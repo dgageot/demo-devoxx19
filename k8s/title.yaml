@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: title
+spec:
+  ports:
+  - name: http
+    port: 8888
+  selector:
+    app: title
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: title
+spec:
+  selector:
+    matchLabels:
+      app: title
+  template:
+    metadata:
+      labels:
+       app: title
+    spec:
+      containers:
+      - name: title
+        image: gcr.io/devoxx19s/title
+

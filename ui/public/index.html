@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <base href="/">
+
+  <title>GCP Quizz</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body ng-app="quizz" ng-controller="QuizzCtrl" ng-cloak>
+  <h1>{{title}}</h1>
+
+  <div class="quizz">
+    <div class="question">
+      <h2>
+        <span ng-if="flavor == 1">Find the logo for</span>
+        <span ng-if="flavor == 2">It's</span>
+      </h2>
+
+      <h3>
+        <span ng-if="flavor == 1">{{guess.name}}</span>
+        <span ng-if="flavor == 2">{{guess.description}}</span>
+      </h3>
+    </div>
+
+    <div class="choices" ng-if="candidate1 && candidate2">
+      <div class="hexagon">
+        <a href="" ng-click="playLeft()">
+          <img ng-src="/images/{{candidate1.image}}" alt="{{candidate1.name}}">
+        </a>
+        <h3 class="solution"><span ng-if="playAgain">{{candidate1.name}}</span></h3>
+      </div>
+
+      <div class="or">
+        <span>Is it?<br/>or</span>
+
+        <div class="result">
+          <div ng-if="correct" class="correct">Correct!</div>
+          <div ng-if="wrong" class="wrong">Wrong</div>
+          <a ng-if="playAgain" ng-click="play()" href="/">Play again</a>
+        </div>
+      </div>
+
+      <div class="hexagon">
+        <a href="" ng-click="playRight()">
+          <img ng-src="/images/{{candidate2.image}}" alt="{{candidate2.name}}">
+        </a>
+        <h3 class="solution"><span ng-if="playAgain">{{candidate2.name}}</span></h3>
+      </div>
+    </div>
+
+    <div ng-if="error" class="error">Unable to retrieve a random pair of hexagons</div>
+  </div>
+</body>
+
+<script src="/js/angular.min.js"></script>
+<script src="/app.js"></script>
+</html>
