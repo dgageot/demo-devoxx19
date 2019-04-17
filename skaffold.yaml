@@ -1,24 +1,7 @@
 apiVersion: skaffold/v1beta8
 kind: Config
 build:
+  tagPolicy:
+    sha256: {}
   artifacts:
-  - image: gcr.io/devoxx19/proxy
-    context: ./gaming-proxy
-  - image: gcr.io/devoxx19/ref
-    context: ./ref
-  - image: gcr.io/devoxx19/game
-    context: ./game
-  - image: gcr.io/devoxx19/db
-    context: ./db
-  - image: gcr.io/devoxx19/title
-    context: ./title
-    jibGradle: {}
-  - image: gcr.io/devoxx19/ui
-    context: ./ui
-    sync:
-      public/*: /app/public
-
-deploy:
-  kubectl:
-    manifests:
-      - k8s/*.yaml
+  - image: gcr.io/devoxx19/hello-gcb
