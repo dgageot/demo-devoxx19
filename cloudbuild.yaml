@@ -1,0 +1,9 @@
+steps:
+- name: 'gcr.io/k8s-skaffold/skaffold'
+  args: ['gcloud', 'container', 'clusters',
+         'get-credentials', 'demo',
+         '--zone', 'europe-west1-d',
+         '--project', 'devoxx19']
+
+- name: 'gcr.io/k8s-skaffold/skaffold'
+  args: ['skaffold', 'run']
